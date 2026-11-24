@@ -1,0 +1,8 @@
+{
+  "ticket": "TCK-2026-1124-7719",
+  "department": "facai",
+  "agent": "operator_01",
+  "status": "waiting_for_visitor",
+  "flag": "FLAG{stage3_network_panel_never_lies}",
+  "messages": []
+}

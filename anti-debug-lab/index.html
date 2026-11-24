@@ -1,0 +1,141 @@
+<!--
+  ============================================================================
+                    反调试靶场 · Anti-Debug Lab
+  ============================================================================
+  这是【本地练习环境】，所有内容为教学目的虚构，与任何真实组织无关。
+  启动方式：用浏览器直接打开本文件，或起任意静态服务器。
+  任务：在页面开启反调试干扰的情况下，找出 4 个 FLAG。
+  攻略：见同目录 WALKTHROUGH.md（先自己试）
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="x-lab-stage1" content="FLAG{stage1_view_source_beats_the_block}">
+<title>📞 正在接入 · 客服熱線</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
+body{background:linear-gradient(145deg,#f0f4f8 0%,#e9edf2 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',Roboto,-apple-system,system-ui,sans-serif;padding:1.5rem;line-height:1.5;color:#1e2b3c}
+.card{max-width:520px;width:100%;background:#fff;border-radius:36px;box-shadow:0 20px 40px -12px rgba(0,80,50,.25),0 8px 24px -6px rgba(0,0,0,.1);padding:2.5rem 2rem 2.2rem;text-align:center;border:1px solid rgba(37,211,102,.15)}
+.badge{width:88px;height:88px;margin:0 auto 1.4rem;border-radius:50%;background:linear-gradient(145deg,#26d367,#1C503E);display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 10px 24px -8px rgba(37,211,102,.6)}
+h1{font-size:1.35rem;color:#1C503E;margin-bottom:.5rem;letter-spacing:.5px}
+.sub{font-size:.85rem;color:#6b7c8f;margin-bottom:1.8rem}
+.rows{text-align:left;background:#f7faf9;border-radius:16px;padding:1.1rem 1.2rem;margin-bottom:1.4rem}
+.row{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#465a6d;padding:.34rem 0}
+.dot{width:7px;height:7px;border-radius:50%;background:#26d367;flex:0 0 auto;box-shadow:0 0 0 3px rgba(38,211,103,.18)}
+.progress{height:6px;background:#e6eeea;border-radius:99px;overflow:hidden;margin-bottom:.55rem}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#26d367,#1C503E);border-radius:99px;transition:width 2.6s ease}
+.pct{font-size:.7rem;color:#8ba0b2;text-align:right;margin-bottom:1.2rem}
+.queue{font-size:.78rem;color:#9aa9b7}
+.queue b{color:#26d367}
+.noscript-flag{background:#fff7e6;border:2px dashed #d8a03c;color:#7a5310;font-family:Consolas,monospace;padding:14px;border-radius:10px;margin:1rem 0;font-size:.82rem;word-break:break-all;text-align:left}
+.hint{font-size:.7rem;color:#b8c4ce;margin-top:1.4rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="badge">📞</div>
+  <h1>正在接入客服熱線</h1>
+  <div class="sub">幫助中心 · 人工服務 · 緊急諮詢</div>
+  <div class="rows">
+    <div class="row"><span class="dot"></span><span>正在為您轉接專員</span></div>
+    <div class="row"><span class="dot"></span><span>加密通話通道已建立</span></div>
+    <div class="row"><span class="dot"></span><span>當前排隊人數較少，正在接入…</span></div>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="pct" id="pct">0%</div>
+  <div class="queue">前方等待：<b>1</b> 人 · 預計接入時間 <b>15</b> 秒</div>
+  <noscript>
+    <div class="noscript-flag">FLAG{stage4_javascript_disabled_everything_falls}</div>
+  </noscript>
+  <div class="hint">本頁面受數位版權保護</div>
+</div>
+<span id="x1" style="display:none" data-a="RkxBR3tzdGFnZTJfY29uc29sZV9vcGVuZWR9"></span>
+<script>
+(function(){
+"use strict";
+var q=function(s){return document.querySelector(s)};
+var b=q('#bar'),p=q('#pct'),n=0;
+var t=setInterval(function(){n+=Math.random()*9+3;if(n>=100){n=100;clearInterval(t)}b.style.width=n+'%';p.textContent=Math.floor(n)+'%'},260);
+var K=['FLAG{stage1_','view_source_','beats_the_block}'];
+var F=function(s){return atob(s)};
+window.__lab_stage2=function(){return F(q('#x1').getAttribute('data-a'))};
+var decoy=function(){return 'FLAG{y0u_found_the_decoy_keep_looking}'};
+Object.defineProperty(window,'__lab_decoy',{get:decoy});
+var data=null;
+try{
+  fetch('kefu.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){data=j;window.__lab_data=j});
+}catch(e){}
+document.addEventListener('contextmenu',function(e){e.preventDefault();return false});
+document.addEventListener('selectstart',function(e){e.preventDefault();return false});
+document.addEventListener('copy',function(e){e.preventDefault();return false});
+document.addEventListener('cut',function(e){e.preventDefault();return false});
+document.addEventListener('dragstart',function(e){e.preventDefault();return false});
+document.addEventListener('keydown',function(e){
+  var k=(e.key||'').toLowerCase();
+  var c=e.ctrlKey||e.metaKey;
+  if(k==='f12'){e.preventDefault();e.stopPropagation();return false}
+  if(c&&e.shiftKey&&(k==='i'||k==='j'||k==='c'||k==='k')){e.preventDefault();e.stopPropagation();return false}
+  if(c&&(k==='u'||k==='s'||k==='p')){e.preventDefault();e.stopPropagation();return false}
+  if(c&&(k==='c'||k==='x'||k==='v'||k==='a')){e.preventDefault();e.stopPropagation();return false}
+},true);
+document.addEventListener('keyup',function(e){
+  if(e.key==='PrintScreen'){try{alert('\u622a\u5716\u884c\u70ba\u5df2\u88ab\u8a18\u9304\u3002')}catch(x){}}
+});
+var wm=document.createElement('div');
+wm.style.cssText='position:fixed;bottom:10px;left:10px;font-size:6px;color:rgba(0,0,0,.02);pointer-events:none;z-index:9999;font-family:monospace';
+wm.textContent='Anti-Debug Lab \u2022 protected content \u2022 2026';
+document.body.appendChild(wm);
+var rw=document.createElement('div');
+rw.style.cssText='position:fixed;bottom:30%;right:10px;font-size:28px;font-weight:bold;color:rgba(0,0,0,.008);transform:rotate(-25deg);pointer-events:none;white-space:nowrap;font-family:Arial,sans-serif;z-index:9998';
+rw.textContent='LAB \u00a9 \u4fdd\u7559\u6b0a\u5229';
+document.body.appendChild(rw);
+var c=0;
+setInterval(function(){
+  if(rw){c++;rw.style.opacity=['0.006','0.009','0.005','0.007'][c%4];rw.textContent=(c%3===0)?'LAB \u00a9 \u4fdd\u7559\u6b0a\u5229 \u00b7 ':'\u7981\u6b62\u672a\u6388\u6b0a\u8907\u88fd \u00b7 '}
+},5000);
+setInterval(function(){if(window.getSelection&&window.getSelection().toString().length>0)window.getSelection().removeAllRanges()},300);
+setInterval(function(){try{console.clear()}catch(e){}},1500);
+var t1=0;
+setInterval(function(){
+  var s=performance.now();
+  debugger;
+  var d=performance.now()-s;
+  if(d>90){t1++;try{console.clear();console.log('%c \u53cd\u8abf\u8a66\u5df2\u555f\u52d5','color:#e33;font-size:14px')}catch(e){}}
+},300);
+(function loop(){
+  var s=performance.now();
+  debugger;
+  if(performance.now()-s>80){try{console.clear()}catch(e){}}
+  setTimeout(loop,600);
+})();
+var th=function(){
+  var dw=window.outerWidth-window.innerWidth;
+  var dh=window.outerHeight-window.innerHeight;
+  if(dw>170||dh>190){
+    document.title='\u26a0 \u5075\u6e2c\u5230\u8abf\u8a66\u5de5\u5177';
+    if(b)b.style.filter='blur(6px)';
+    if(p)p.textContent='\u5df2\u9501\u5b9a';
+  }
+};
+setInterval(th,800);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)th()});
+})();
+</script>
+</body>
+</html>
+<!--
+  ============================================================================
+  靶场结束 · End of lab file
+  ============================================================================
+  能看到这段注释，说明你已经绕过了 Ctrl+U 拦截。
+  剩下的 FLAG 分别藏在：
+    · JavaScript 运行时（需要控制台）
+    · 一个网络请求（需要 Network 面板）
+    · 禁用 JavaScript 之后的页面（需要 noscript 渲染）
+  全部解法见 WALKTHROUGH.md
+  ============================================================================
+-->
