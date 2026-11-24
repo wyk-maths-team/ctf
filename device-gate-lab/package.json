@@ -1,0 +1,23 @@
+{
+  "name": "device-gate-lab",
+  "version": "1.0.0",
+  "description": "A zero-dependency local CTF lab: device fingerprint gateway, WebSocket protocol reversing, and frontend credential leakage.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "ctf",
+    "security",
+    "lab",
+    "websocket",
+    "browser-fingerprint",
+    "web-security",
+    "learning"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
+  "private": true
+}
